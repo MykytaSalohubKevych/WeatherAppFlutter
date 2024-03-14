@@ -24,12 +24,13 @@ class WeatherScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const SizedBox(height: 20), // Adjust this spacing as needed
+                const Spacer(),
                 Container(
                   margin: EdgeInsets.symmetric(
                       horizontal: width * 0.1, vertical: height * 0.05),
                   decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.2),
+                      borderRadius: BorderRadius.circular(24),
+                  color: Colors.white.withOpacity(0.2),
                   ),
                   child: Image.asset('assets/logo.png'),
                 ),
@@ -37,6 +38,7 @@ class WeatherScreen extends StatelessWidget {
                   width: width * 0.8,
                   height: height * 0.425,
                   decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(24),
                       color: themeData.primary),
                   child: ListView(
                     children: [
@@ -76,8 +78,12 @@ class WeatherScreen extends StatelessWidget {
                         style: ButtonStyle(
                             shape: MaterialStatePropertyAll(
                                 RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(12),
                                     side: BorderSide(
-                                        color: themeData.secondary, width: 0.5)))),
+                                        color: themeData.secondary, width: 0.5)
+                                )
+                            )
+                        ),
                         onPressed: () {
                           showDialog(
                               context: context,
@@ -86,6 +92,7 @@ class WeatherScreen extends StatelessWidget {
                                     content: Container(
                                       padding: const EdgeInsets.only(left: 12),
                                       decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(12),
                                         border: Border.all(
                                             color: themeData.secondary),
                                       ),
@@ -220,20 +227,9 @@ class WeatherScreen extends StatelessWidget {
                 const SizedBox(height: 64),
                 const Spacer()
               ],
-            )));
+            )
+        )
+    );
   }
 }
 
-Widget RowWithWeatherDataInContainer(
-    ThemeBuilder themeData, BuildContext context) {
-  return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-    Image.network('https://openweathermap.org/img/wn/10d@2x.png',
-        color: themeData.secondary), // get from state
-    Text(
-      '30°C',
-      style: TextStyle(
-          fontSize: Theme.of(context).textTheme.displayMedium!.fontSize,
-          color: themeData.secondary),
-    )
-  ]);
-}
