@@ -27,7 +27,7 @@ class WeatherEntity extends Equatable {
         sunrise,
         sunset,
         icon,
-    cond
+        cond
       ];
 
   const WeatherEntity(

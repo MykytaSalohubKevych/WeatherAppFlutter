@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:either_dart/src/either.dart';
 import 'package:weather/weather.dart';
 import 'package:my_weather_app/data/remote/weather_api.dart';
@@ -14,6 +16,7 @@ class WeatherRepositoryImpl implements WeatherRepository {
   Future<Either<Failure, WeatherEntity>> getCurrentWeather(String cityName) async {
     try {
       final result = await weatherApi.getWeather(cityName);
+
 
       return Right(result.toEntity());
     } on OpenWeatherAPIException {
